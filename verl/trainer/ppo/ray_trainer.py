@@ -1103,8 +1103,8 @@ class RayPPOTrainer:
                             else:
                                 if self.use_rm and "rm_scores" not in batch.batch.keys():
                                     rm_scores = self.rm_wg.compute_rm_score(batch)
-                                batch = batch.union(rm_scores)
-                            reward_baseline_tensor, _ = compute_reward(batch, self.reward_fn)
+                                    batch = batch.union(rm_scores)
+                                reward_baseline_tensor, _ = compute_reward(batch, self.reward_fn)
                             reward_baseline_tensor = reward_baseline_tensor.sum(dim=-1)
 
                             keys_to_pop = set(gen_baseline_output.batch.keys())
